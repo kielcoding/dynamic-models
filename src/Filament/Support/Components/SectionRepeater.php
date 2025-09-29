@@ -4,6 +4,7 @@ namespace Valourite\DynamicModels\Filament\Support\Components;
 
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Support\Str;
 use Valourite\DynamicModels\Filament\Support\Helpers\SectionHelper;
 
 final class SectionRepeater extends Repeater
@@ -12,6 +13,7 @@ final class SectionRepeater extends Repeater
     {
         return parent::make($name)
             ->hiddenLabel()
+            ->addActionLabel('Abschnitt hinzufügen')
             ->collapsible()
             ->collapsed(false)
             ->minItems(1)
@@ -31,7 +33,7 @@ final class SectionRepeater extends Repeater
     {
         return [
             TextInput::make('title')
-                ->label('Title')
+                ->label(__('Section title'))
                 ->required()
                 ->disabled(fn ($get) => $get('deleted') === true),
 

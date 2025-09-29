@@ -22,8 +22,8 @@ trait CanIncludeFieldSpecificOptions
     public static function getPlaceholderOption()
     {
         return TextInput::make('placeholder')
-            ->label('Placeholder')
-            ->helperText('Text to show when field is empty')
+            ->label('Platzhalter')
+            ->helperText('Text, der angezeigt wird, wenn das Feld leer ist')
             ->maxLength(255);
     }
 
@@ -33,8 +33,8 @@ trait CanIncludeFieldSpecificOptions
     public static function getMaxLengthOption()
     {
         return TextInput::make('maxlength')
-            ->label('Maximum Length')
-            ->helperText('Maximum number of characters')
+            ->label('Maximale Länge')
+            ->helperText('Maximale Anzahl an Zeichen')
             ->numeric();
     }
 
@@ -49,18 +49,18 @@ trait CanIncludeFieldSpecificOptions
             ->collapsed()
             ->schema([
                 TextInput::make('min')
-                    ->label('Minimum Value')
-                    ->helperText('Minimum allowed value')
+                    ->label('Minimal-Wert')
+                    ->helperText('Minimaler erlaubter Wert')
                     ->numeric(),
 
                 TextInput::make('max')
-                    ->label('Maximum Value')
-                    ->helperText('Maximum allowed value')
+                    ->label('Maximal-Wert')
+                    ->helperText('Maximal erlaubter Wert')
                     ->numeric(),
 
                 TextInput::make('step')
-                    ->label('Step')
-                    ->helperText('Increment/decrement by this value')
+                    ->label('Schritt')
+                    ->helperText('Erhöhen/Verringern um diesen Wert')
                     ->default('1')
                     ->numeric(),
             ]);
@@ -71,25 +71,25 @@ trait CanIncludeFieldSpecificOptions
      */
     public static function getTextAreaOptions()
     {
-        return Section::make('Textarea Options')
+        return Section::make('Textfeld-Optionen')
             ->columns(3)
             ->collapsible()
             ->collapsed()
             ->schema([
                 TextInput::make('rows')
-                    ->label('Rows')
-                    ->helperText('Number of visible text rows')
+                    ->label('Zeilen')
+                    ->helperText('Anzahl der sichtbaren Zeilen')
                     ->numeric()
                     ->default(3),
 
                 TextInput::make('cols')
-                    ->label('Columns')
-                    ->helperText('Number of visible text columns')
+                    ->label('Spalten')
+                    ->helperText('Anzahl der sichtbaren Spalten')
                     ->numeric(),
 
                 Toggle::make('autosize')
-                    ->label('Auto Size')
-                    ->helperText('Automatically adjust height based on content')
+                    ->label('Auto-Skalierung')
+                    ->helperText('Höhe automatisch an Inhalt anpassen?')
                     ->default(false),
             ]);
     }
@@ -100,8 +100,8 @@ trait CanIncludeFieldSpecificOptions
     public static function getInlineOption()
     {
         return Toggle::make('inline')
-            ->label('Inline Display')
-            ->helperText('Display options horizontally')
+            ->label('Inline-Anzeige')
+            ->helperText('Optionen horizontal darstellen?')
             ->default(false);
     }
 
@@ -110,19 +110,19 @@ trait CanIncludeFieldSpecificOptions
      */
     public static function getOptionsSection()
     {
-        return Section::make('Options')
+        return Section::make('Optionen')
             ->columns(1)
             ->collapsible()
             ->collapsed()
             ->schema([
                 Repeater::make('options')
-                    ->label('Options')
+                    ->label('Optionen')
                     ->schema([
                         TextInput::make('value')
-                            ->label('Value')
+                            ->label('Wert')
                             ->required(),
                         TextInput::make('label')
-                            ->label('Label')
+                            ->label('Beschriftung')
                             ->required(),
                     ])
                     ->columnSpanFull()
@@ -136,31 +136,31 @@ trait CanIncludeFieldSpecificOptions
      */
     public static function getDateOptions()
     {
-        return Section::make('Date Options')
+        return Section::make('Datum-Optionen')
             ->columns(3)
             ->collapsible()
             ->collapsed()
             ->schema([
                 DatePicker::make('min_date')
-                    ->label('Minimum Date')
+                    ->label('Minimal-Datum')
                     ->native(false)
                     ->helperText('Earliest selectable date (YYYY-MM-DD)'),
 
                 DatePicker::make('max_date')
-                    ->label('Maximum Date')
+                    ->label('Maximal-Datum')
                     ->native(false)
                     ->helperText('Latest selectable date (YYYY-MM-DD)'),
 
                 Select::make('display_format')
-                    ->label('Display Format')
-                    ->helperText('Date format (e.g., Y-m-d)')
+                    ->label('Anzeige-Format')
+                    ->helperText('Datumsformat (z.B. d.m.Y)')
                     ->options([
+                        'd.m.Y' => 'd.m.Y',
                         'Y-m-d' => 'Y-m-d',
-                        'd-m-Y' => 'd-m/Y',
                         'm/d/Y' => 'm/d/Y',
                         'Y/m/d' => 'Y/m/d',
                     ])
-                    ->default('Y-m-d'),
+                    ->default('d.m.Y'),
             ]);
     }
 
@@ -169,7 +169,7 @@ trait CanIncludeFieldSpecificOptions
      */
     public static function getFileUploadOptions()
     {
-        return Section::make('File Upload Options')
+        return Section::make('Dateiupload-Optionen')
             ->columns(2)
             ->collapsible()
             ->collapsed()

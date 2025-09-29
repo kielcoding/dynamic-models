@@ -29,7 +29,6 @@ trait CanIncludePrefixSuffixText
 
         return TextInput::make($name)
             ->label(Str::title($label))
-            ->helperText("This is the {$label}.")
             ->maxLength(255);
     }
 }

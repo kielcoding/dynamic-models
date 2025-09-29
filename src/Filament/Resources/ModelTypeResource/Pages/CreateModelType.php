@@ -10,6 +10,8 @@ final class CreateModelType extends CreateRecord
 {
     protected static string $resource = ModelTypeResource::class;
 
+    protected static bool $canCreateAnother = false;
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         //Set the schema data to the schema data provided by $this->data as it contains

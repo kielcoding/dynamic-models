@@ -16,6 +16,7 @@ final class FieldRepeater extends Repeater
     {
         return parent::make($name)
             ->hiddenLabel()
+            ->addActionLabel('Feld hinzufügen')
             ->grid(2)
             ->minItems(1)
             ->addable(true)
@@ -34,7 +35,8 @@ final class FieldRepeater extends Repeater
     {
         return [
             TextInput::make('name')
-                ->label('Name')
+                ->label(__('Name'))
+                ->helperText('Technischer Name des Feldes')
                 ->required()
                 ->live(onBlur: true)
                 ->afterStateUpdated(
@@ -43,12 +45,12 @@ final class FieldRepeater extends Repeater
                 ->disabled(fn ($get) => $get('deleted') === true),
 
             TextInput::make('label')
-                ->label('Label')
-                ->helperText('This is the label of the field')
+                ->label(__('Label'))
+                ->helperText('Titel des Feldes')
                 ->disabled(fn ($get) => $get('deleted') === true),
 
             Select::make('type')
-                ->label('Type')
+                ->label(__('Type'))
                 ->options(
                     collect(FieldType::cases())->mapWithKeys(
                         fn ($type) => [$type->value => Str::title($type->name)]

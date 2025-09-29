@@ -38,6 +38,26 @@ return [
         'sort' => 1,
     ],
 
+    'schema' => [
+        'base_section_title' => null,
+
+        'name_label' => 'Name',
+
+        'description_label' => 'Beschreibung',
+
+        'confirmation_label' => 'Bestätigungsnachricht',
+
+        'confirmation_text' => 'Formular wurde erfolgreich gespeichert.',
+
+        'creatable_label' => 'Aktiv',
+
+        'version_label' => 'Version',
+
+        'field_section_title' => 'Abschnitte und Felder konfigurieren',
+
+        'preview_title' => 'Formular-Vorschau',
+    ],
+
     'versioning' => [
         /*
          * Enables versioning for dynamic models

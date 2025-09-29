@@ -21,31 +21,31 @@ final class ModelTypeTable
         return $table
             ->columns([
                 TextColumn::make(ModelType::MODEL_TYPE_NAME)
-                    ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Name')
+                    ->label(config('dynamic-models.schema.name_label', 'Model Type Name'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make(ModelType::MODEL_TYPE_DESCRIPTION)
-                    ->label('Description')
+                    ->label(__('Description'))
                     ->html()
                     ->limit(50)
                     ->toggleable(isToggledHiddenByDefault: false),
 
-                TextColumn::make(ModelType::MODEL_TYPE_CONFIRMATION_MESSAGE)
+                /*TextColumn::make(ModelType::MODEL_TYPE_CONFIRMATION_MESSAGE)
                     ->label('Confirmation Message')
                     ->html()
                     ->limit(50)
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true),*/
 
                 TextColumn::make(ModelType::CAN_BE_CREATED)
-                    ->label('Active')
+                    ->label(__('Active'))
                     ->badge()
                     ->color(fn (bool $state) => $state ? 'success' : 'warning')
-                    ->formatStateUsing(fn (bool $state) => $state ? 'Yes' : 'No'),
+                    ->formatStateUsing(fn (bool $state) => $state ? __('Yes') : __('No')),
 
-                TextColumn::make(ModelType::MODEL_TYPE_PARENT_MODEL)
+                /*TextColumn::make(ModelType::MODEL_TYPE_PARENT_MODEL)
                     ->label('Model')
-                    ->formatStateUsing(fn ($state) => class_basename($state)),
+                    ->formatStateUsing(fn ($state) => class_basename($state)),*/
 
                 TextColumn::make(ModelType::MODEL_TYPE_VERSION)
                     ->label('Version')

@@ -14,16 +14,16 @@ trait CanIncludeBaseFields
     public static function getHelperText()
     {
         return TextInput::make('helper_text')
-            ->label('Helper Text')
-            ->helperText('This is the helper text.')
+            ->label('Hilfstext')
+            ->helperText('Dies ist der Hilfstext.')
             ->maxLength(255);
     }
 
     public static function getRequired(): Checkbox
     {
         return Checkbox::make('required')
-            ->label('Required')
-            ->helperText('Is this field required.');
+            ->label('Pflichtfeld')
+            ->helperText('Feld als Pflichtfeld definieren.');
     }
 
     public static function getCustomID(string $type): Hidden

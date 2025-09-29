@@ -14,35 +14,35 @@ final class ModelTypeInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make(config('dynamic-models.navigation.label', 'Model Type') . ' Details')
+            Section::make(config('dynamic-models.schema.base_section_title', 'Model Type Details'))
                 ->schema([
                     TextEntry::make(ModelType::MODEL_TYPE_NAME)
-                        ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Name'),
+                        ->label(config('dynamic-models.schema.name_label', 'Model Type Name')),
 
                     TextEntry::make(ModelType::MODEL_TYPE_DESCRIPTION)
-                        ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Description')
+                        ->label(config('dynamic-models.schema.description_label', 'Model Type Description'))
                         ->markdown(),
 
                     TextEntry::make(ModelType::MODEL_TYPE_CONFIRMATION_MESSAGE)
-                        ->label('Confirmation Message')
+                        ->label(config('dynamic-models.schema.confirmation_label', 'Confirmation Message'))
                         ->html(),
 
                     TextEntry::make(ModelType::MODEL_TYPE_VERSION)
-                        ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Version'),
+                        ->label(config('dynamic-models.schema.version_label', 'Model Type Version')),
 
-                    TextEntry::make(ModelType::MODEL_TYPE_PARENT_MODEL)
+                    /*TextEntry::make(ModelType::MODEL_TYPE_PARENT_MODEL)
                         ->label('Parent Model')
-                        ->formatStateUsing(fn ($state) => class_basename($state)),
+                        ->formatStateUsing(fn ($state) => class_basename($state)),*/
 
                     TextEntry::make(ModelType::CAN_BE_CREATED)
-                        ->label('Active')
+                        ->label(config('dynamic-models.schema.creatable_label', 'Can new records be created from this type?'))
                         ->badge()
                         ->color(fn ($state) => $state ? 'success' : 'warning')
-                        ->formatStateUsing(fn ($state) => $state ? 'Yes' : 'No'),
+                        ->formatStateUsing(fn ($state) => $state ? __('Yes') : __('No')),
                 ])
                 ->columns(2),
 
-            Section::make('Schema Preview')
+            Section::make(config('dynamic-models.schema.preview_title', 'Schema Preview'))
                 ->schema(function (Get $get) {
                     $record = $get('record');
 

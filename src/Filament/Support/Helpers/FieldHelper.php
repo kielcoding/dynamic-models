@@ -26,10 +26,10 @@ final class FieldHelper
         return Action::make('field_options')
             ->icon('heroicon-m-cog')
             ->label('')
-            ->tooltip('Edit base field options')
+            ->tooltip('Feld-Einstellungen')
             ->color('gray')
             ->slideOver()
-            ->modalHeading('Configure Field Options')
+            ->modalHeading('Feld konfigurieren')
             ->visible(function (array $arguments, Repeater $component, $get) {
                 //hide if section has been deleted
                 if ($get('deleted') === true) {

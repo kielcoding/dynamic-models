@@ -2,6 +2,7 @@
 
 namespace Valourite\DynamicModels\Filament\Resources\ModelTypeResource\Schemas;
 
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -29,18 +30,18 @@ final class ModelTypeForm
 
     private static function modelTypeDetailSection(): Section
     {
-        return Section::make(config('dynamic-models.navigation.label', 'Model Type') . ' Details')
+        return Section::make(config('dynamic-models.schema.base_section_title', 'Model Type Details'))
             ->columns(2)
             ->schema([
                 TextInput::make(ModelType::MODEL_TYPE_NAME)
-                    ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Name')
-                    ->helperText('The unique name of this model.')
+                    ->label(config('dynamic-models.schema.name_label', 'Model Type Name'))
+                    //->helperText('The unique name of this model.')
                     ->maxLength(255)
                     ->required(),
 
                 RichEditor::make(ModelType::MODEL_TYPE_DESCRIPTION)
-                    ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Description')
-                    ->helperText('Enter the optional description of the model type.')
+                    ->label(config('dynamic-models.schema.description_label', 'Model Type Description'))
+                    //->helperText('Enter the optional description of the model type.')
                     ->toolbarButtons([
                         ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
                         ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -49,19 +50,22 @@ final class ModelTypeForm
                     ]),
 
                 Textarea::make(ModelType::MODEL_TYPE_CONFIRMATION_MESSAGE)
-                    ->label('Confirmation Message')
-                    ->default('Your record has been submitted successfully!')
-                    ->helperText('Enter the optional confirmation message of the record when created or updated.'),
+                    ->label(config('dynamic-models.schema.confirmation_label', 'Confirmation Message'))
+                    ->default(config('dynamic-models.schema.confirmation_text', 'Your record has been submitted successfully!')),
+                    //->helperText('Enter the optional confirmation message of the record when created or updated.'),
 
                 Toggle::make(ModelType::CAN_BE_CREATED)
                     ->default(true)
-                    ->label('Can new records be created from this type?')
+                    ->label(config('dynamic-models.schema.creatable_label', 'Can new records be created from this type?'))
                     ->required(),
 
-                Select::make(ModelType::MODEL_TYPE_PARENT_MODEL)
+                /*Select::make(ModelType::MODEL_TYPE_PARENT_MODEL)
                     ->label('Parent Model')
                     ->options(self::getModelOptions())
-                    ->required(),
+                    ->default(collect(self::getModelOptions())->keys()->first())
+                    ->required(),*/
+                Hidden::make(ModelType::MODEL_TYPE_PARENT_MODEL)
+                    ->default(collect(self::getModelOptions())->keys()->first()),
 
                 TextInput::make(ModelType::MODEL_TYPE_VERSION)
                     ->label(config('dynamic-models.navigation.label', 'Model Type') . ' Version')
@@ -75,7 +79,7 @@ final class ModelTypeForm
 
     private static function modelTypeSchemaSection(): Section
     {
-        return Section::make(config('dynamic-models.navigation.label', 'Model Type') . ' Creation')
+        return Section::make(config('dynamic-models.schema.field_section_title', 'Model Type Creation'))
             ->columns(1)
             ->schema([
                 SectionRepeater::make(ModelType::MODEL_TYPE_SCHEMA),

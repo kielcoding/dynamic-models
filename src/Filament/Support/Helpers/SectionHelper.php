@@ -26,7 +26,7 @@ final class SectionHelper
         return Action::make('section_options')
             ->icon('heroicon-m-cog')
             ->label('')
-            ->tooltip('Edit base section options')
+            ->tooltip('Abschnitt-Einstellungen')
             ->color('gray')
             ->slideOver()
             ->visible(function (array $arguments, Repeater $component) {
@@ -35,7 +35,7 @@ final class SectionHelper
 
                 return isset($state[$itemKey]) && ($state[$itemKey]['deleted'] ?? false) === false;
             })
-            ->modalHeading('Configure Section Options')
+            ->modalHeading('Abschnitt konfigurieren')
             ->fillForm(function (array $arguments, Get $get) {
                 $state = $get(ModelType::MODEL_TYPE_SCHEMA);
 

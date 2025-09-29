@@ -46,8 +46,8 @@ trait CanIncludeIcons
         $label = str_replace('-', ' ', $name);
 
         return ColorPicker::make($name)
-            ->label(Str::title($label))
-            ->helperText("This is the {$label}.");
+            ->label(Str::headline($label))
+            ->helperText('Icon-Farbe');
     }
 
     public static function getIconSelector($name): Select
@@ -57,7 +57,7 @@ trait CanIncludeIcons
             return collect(Heroicon::cases())->mapWithKeys(function (Heroicon $heroicon) {
                 $iconName = $heroicon->value;
                 $iconHtml = generate_icon_html($heroicon)->toHtml();
-                $label    = "<span class='inline-flex items-center'>
+                $label    = "<span class='flex items-center'>
                             {$iconHtml}
                             <span class='ml-1'>{$iconName}</span>
                         </span>";
@@ -72,6 +72,6 @@ trait CanIncludeIcons
             ->preload()
             ->allowHtml()
             ->native(false)
-            ->helperText('Choose a Heroicon to prefix the field.');
+            ->helperText("Wähle ein ".Str::headline($name).".");
     }
 }
