@@ -78,6 +78,11 @@ trait HandlesModelInstance
                 // Get the raw value from the form data
                 $value = $this->dynamicModelRawData[$customId] ?? null;
 
+                // Skip empty values, otherwise DB NOT NULL will crash:
+                if ($value === null) {
+                    continue;
+                }
+
                 if ( ! $field) {
                     continue;
                 }
