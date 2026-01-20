@@ -2,6 +2,7 @@
 
 namespace Valourite\DynamicModels\Filament\Support\Components;
 
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -34,19 +35,17 @@ final class FieldRepeater extends Repeater
     protected static function buildSchema(): array
     {
         return [
-            TextInput::make('name')
-                ->label(__('Name'))
-                ->helperText('Technischer Name des Feldes')
-                ->required()
-                ->live(onBlur: true)
-                ->afterStateUpdated(
-                    fn (Set $set, ?string $state) => $set('label', str_replace('_', ' ', Str::title(trim($state))))
-                )
-                ->disabled(fn ($get) => $get('deleted') === true),
-
             TextInput::make('label')
                 ->label(__('Label'))
                 ->helperText('Titel des Feldes')
+                ->required()
+                ->live(onBlur: true)
+                ->afterStateUpdated(
+                    fn (Set $set, ?string $state) => $set('name', Str::slug(trim($state)))
+                )
+                ->disabled(fn ($get) => $get('deleted') === true),
+
+            Hidden::make('name')
                 ->disabled(fn ($get) => $get('deleted') === true),
 
             Select::make('type')

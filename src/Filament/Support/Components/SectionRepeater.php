@@ -26,7 +26,8 @@ final class SectionRepeater extends Repeater
                 SectionHelper::getBaseOptionsModal(),
                 SectionHelper::getSoftDeleteAction(),
                 SectionHelper::getRestoreAction(),
-            ]);
+            ])
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null);
     }
 
     protected static function buildSchema(): array
