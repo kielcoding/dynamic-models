@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Valourite\DynamicModels\Database\Factories\ModelTypeFactory;
 
-final class ModelType extends Model
+class ModelType extends Model
 {
     /**
      * =========================
