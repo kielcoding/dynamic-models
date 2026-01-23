@@ -104,7 +104,7 @@ class ModelType extends Model
      *      BOOTED
      * =======================.
      */
-    public static function booted(): void
+    protected static function booted(): void
     {
         //Prevent an empty schema from being generated
         static::creating(function ($model) {
